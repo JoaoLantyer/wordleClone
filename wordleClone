@@ -46,73 +46,73 @@ public class Main {
                 System.out.printf("Type the %dº letter.\n", i + 1);
                 wordle[i] = input.nextLine();
             }
-            if (Objects.equals(wordle[0], a)) {
+            if (Objects.equals(wordle[0].toUpperCase(), a)) {
                 System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[0], b)){
+            }else if(Objects.equals(wordle[0].toUpperCase(), b)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[0], c)){
+            }else if(Objects.equals(wordle[0].toUpperCase(), c)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[0], d)){
+            }else if(Objects.equals(wordle[0].toUpperCase(), d)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[0], e)){
+            }else if(Objects.equals(wordle[0].toUpperCase(), e)){
                 System.out.println("YELLOW!");
             }else{
                 System.out.println("GRAY...");
             }
-            if (Objects.equals(wordle[1], a)) {
+            if (Objects.equals(wordle[1].toUpperCase(), a)) {
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[1], b)){
+            }else if(Objects.equals(wordle[1].toUpperCase(), b)){
                 System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[1], c)){
+            }else if(Objects.equals(wordle[1].toUpperCase(), c)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[1], d)){
+            }else if(Objects.equals(wordle[1].toUpperCase(), d)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[1], e)){
+            }else if(Objects.equals(wordle[1].toUpperCase(), e)){
                 System.out.println("YELLOW!");
             }else{
                 System.out.println("GRAY...");
             }
-            if (Objects.equals(wordle[2], a)) {
+            if (Objects.equals(wordle[2].toUpperCase(), a)) {
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[2], b)){
+            }else if(Objects.equals(wordle[2].toUpperCase(), b)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[2], c)){
+            }else if(Objects.equals(wordle[2].toUpperCase(), c)){
                 System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[2], d)){
+            }else if(Objects.equals(wordle[2].toUpperCase(), d)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[2], e)){
+            }else if(Objects.equals(wordle[2].toUpperCase(), e)){
                 System.out.println("YELLOW!");
             }else{
                 System.out.println("GRAY...");
             }
-            if (Objects.equals(wordle[3], a)) {
+            if (Objects.equals(wordle[3].toUpperCase(), a)) {
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[3], b)){
+            }else if(Objects.equals(wordle[3].toUpperCase(), b)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[3], c)){
+            }else if(Objects.equals(wordle[3].toUpperCase(), c)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[3], d)){
+            }else if(Objects.equals(wordle[3].toUpperCase(), d)){
                 System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[3], e)){
+            }else if(Objects.equals(wordle[3].toUpperCase(), e)){
                 System.out.println("YELLOW!");
             }else{
                 System.out.println("GRAY...");
             }
-            if (Objects.equals(wordle[4], a)) {
+            if (Objects.equals(wordle[4].toUpperCase(), a)) {
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4], b)){
+            }else if(Objects.equals(wordle[4].toUpperCase(), b)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4], c)){
+            }else if(Objects.equals(wordle[4].toUpperCase(), c)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4], d)){
+            }else if(Objects.equals(wordle[4].toUpperCase(), d)){
                 System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4], e)){
+            }else if(Objects.equals(wordle[4].toUpperCase(), e)){
                 System.out.println("GREEN!");
             }else{
                 System.out.println("GRAY...");
             }
 
-            if (wordle[0].equals(answer[0]) && wordle[1].equals(answer[1]) && wordle[2].equals(answer[2]) && wordle[3].equals(answer[3]) && wordle[4].equals(answer[4])) {
+            if (wordle[0].toUpperCase().equals(answer[0]) && wordle[1].toUpperCase().equals(answer[1]) && wordle[2].toUpperCase().equals(answer[2]) && wordle[3].toUpperCase().equals(answer[3]) && wordle[4].toUpperCase().equals(answer[4])) {
                 System.out.println("Congratulations!");
                 break;
             }
