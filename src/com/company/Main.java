@@ -1,123 +1,181 @@
 package com.company;
 
-import java.util.Objects;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.Locale;
+import java.lang.Character;
+import java.net.URL;
 
 public class Main {
 
     Locale locale = new Locale("en_US");
 
-    public static void main(String[] args) {
+    public static void main(String[] agrs) throws IOException {
+
         Locale.setDefault(Locale.US);
 
         Scanner input = new Scanner(System.in);
-        int randomNumber = 1 + (int) (Math.random() * 5);
 
-        if (randomNumber == 1) {
-            wordleGame("N", "I", "G", "H", "T");
-        }else if(randomNumber == 2){
-            wordleGame("C", "L", "O", "T", "H");
-        }else if(randomNumber == 3){
-            wordleGame("P", "L", "U", "C", "K");
-        }else if(randomNumber == 4){
-            wordleGame("F", "R", "E", "S", "H");
-        }else if(randomNumber == 5){
-            wordleGame("D", "R", "A", "I", "N");
-        }
+        Main obj = new Main();
 
-        System.out.println("-------- GAME OVER --------");
+        String result;
+        String answer;
+        int choice;
 
+        do {
+
+            do {
+                URL url = new URL("https://random-word-api.herokuapp.com/word?length=5&lang=en");
+                Scanner sc = new Scanner(url.openStream());
+                StringBuffer sb = new StringBuffer();
+
+                while (sc.hasNext()) {
+                    sb.append(sc.next());
+                }
+
+                result = sb.toString();
+                answer = result.substring(2, result.length() - 2);
+
+            } while (!obj.UniqueCharacters(answer));
+
+            wordleGame(answer);
+
+            System.out.println("\n------------------------------");
+            System.out.println("|    THE ANSWER WAS " + answer.toUpperCase(Locale.ROOT) + "    |");
+            System.out.println("------------------------------");
+            System.out.println("|                            |");
+            System.out.println("|        GAME OVER...        |");
+            System.out.println("|                            |");
+            System.out.println("|         PLAY AGAIN?        |");
+            System.out.println("|                            |");
+            System.out.println("|     [1] YES     [2] NO     |");
+            System.out.println("|                            |");
+            System.out.println("------------------------------");
+            System.out.print("YOUR CHOICE: ");
+            choice = input.nextInt();
+
+        }while(choice != 2);
     }
 
-    public static void wordleGame(String a, String b, String c, String d, String e){
+    public static void wordleGame(String answer){
+
         Scanner input = new Scanner(System.in);
-        String[] answer = {a, b, c, d, e};
-        String[] wordle = new String[5];
 
-        System.out.println("-----WORDLE!-----");
-        System.out.println("TUTORIAL:");
-        System.out.println("If it says 'GREEN!' the letter is in the word and in the correct spot.");
-        System.out.println("If it says 'YELLOW!' the letter is in the word but in the wrong spot.");
-        System.out.println("If it says 'GRAY...' the letter is not in the word in any spot.");
+        Main obj = new Main();
 
-        for (int j = 1; j <= 6; j++) {
-            for (int i = 0; i < 5; i++) {
-                System.out.printf("Type the %dº letter.\n", i + 1);
-                wordle[i] = input.nextLine();
-            }
-            if (Objects.equals(wordle[0].toUpperCase(), a)) {
-                System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[0].toUpperCase(), b)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[0].toUpperCase(), c)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[0].toUpperCase(), d)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[0].toUpperCase(), e)){
-                System.out.println("YELLOW!");
-            }else{
-                System.out.println("GRAY...");
-            }
-            if (Objects.equals(wordle[1].toUpperCase(), a)) {
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[1].toUpperCase(), b)){
-                System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[1].toUpperCase(), c)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[1].toUpperCase(), d)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[1].toUpperCase(), e)){
-                System.out.println("YELLOW!");
-            }else{
-                System.out.println("GRAY...");
-            }
-            if (Objects.equals(wordle[2].toUpperCase(), a)) {
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[2].toUpperCase(), b)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[2].toUpperCase(), c)){
-                System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[2].toUpperCase(), d)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[2].toUpperCase(), e)){
-                System.out.println("YELLOW!");
-            }else{
-                System.out.println("GRAY...");
-            }
-            if (Objects.equals(wordle[3].toUpperCase(), a)) {
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[3].toUpperCase(), b)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[3].toUpperCase(), c)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[3].toUpperCase(), d)){
-                System.out.println("GREEN!");
-            }else if(Objects.equals(wordle[3].toUpperCase(), e)){
-                System.out.println("YELLOW!");
-            }else{
-                System.out.println("GRAY...");
-            }
-            if (Objects.equals(wordle[4].toUpperCase(), a)) {
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4].toUpperCase(), b)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4].toUpperCase(), c)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4].toUpperCase(), d)){
-                System.out.println("YELLOW!");
-            }else if(Objects.equals(wordle[4].toUpperCase(), e)){
-                System.out.println("GREEN!");
-            }else{
-                System.out.println("GRAY...");
-            }
+        String wordle;
+        String[] tries = {"first", "second", "third", "fourth", "fifth", "last"};
 
-            if (wordle[0].toUpperCase().equals(answer[0]) && wordle[1].toUpperCase().equals(answer[1]) && wordle[2].toUpperCase().equals(answer[2]) && wordle[3].toUpperCase().equals(answer[3]) && wordle[4].toUpperCase().equals(answer[4])) {
-                System.out.println("Congratulations!");
-                break;
-            }
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println("|                                   .---.                              ,--,                                   |");
+        System.out.println("|                                  /. ./|                       ,---,,--.'|                                   |");
+        System.out.println("|                              .--'.  ' ;   ,---.    __  ,-.  ,---.'||  | :                                   |");
+        System.out.println("|                             /__./ \\ : |  '   ,'\\ ,' ,'/ /|  |   | ::  : '                                   |");
+        System.out.println("|                         .--'.  '   \\' . /   /   |'  | |' |  |   | ||  ' |      ,---.                        |");
+        System.out.println("|                        /___/ \\ |    ' '.   ; ,. :|  |   ,',--.__| |'  | |     /     \\                       |");
+        System.out.println("|                        ;   \\  \\;      :'   | |: :'  :  / /   ,'   ||  | :    /    /  |                      |");
+        System.out.println("|                         \\   ;  `      |'   | .; :|  | ' .   '  /  |'  : |__ .    ' / |                      |");
+        System.out.println("|                          .   \\    .\\  ;|   :    |;  : | '   ; |:  ||  | '.'|'   ;   /|                      |");
+        System.out.println("|                           \\   \\   ' \\ | \\   \\  / |  , ; |   | '/  ';  :    ;'   |  / |                      |");
+        System.out.println("|                            :   '  |--\"   `----'   ---'  |   :    :||  ,   / |   :    |                      |");
+        System.out.println("|                             \\   \\ ;                      \\   \\  /   ---`-'   \\   \\  /                       |");
+        System.out.println("|                              '---\"                        `----'              `----'                        |");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        System.out.println("|                                                  TUTORIAL:                                                  |");
+        System.out.println("|                                                                                                             |");
+        System.out.println("|    Each guess must be a valid five-letter word with no repeating letters. Hit the enter button to submit.   |");
+        System.out.println("|    If it says 'GREEN!' the letter is in the word and in the correct spot.                                   |");
+        System.out.println("|    If it says 'YELLOW!' the letter is in the word but in the wrong spot.                                    |");
+        System.out.println("|    If it says 'GRAY...' the letter is not in the word in any spot.                                          |");
+        System.out.println("|    You have 6 attempts in total, good luck!                                                                 |");
+        System.out.println("|                                                                                                             |");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+        
+        for(int i = 0; i <= 5; i++) {
 
+            System.out.print("Type your " + tries[i] + " attempt: ");
+
+            wordle = input.nextLine();
+
+            if(wordle.length() == 5) {
+                if(obj.UniqueCharacters(wordle)) {
+
+                    //GUESS CHARACTERS
+                    char firstLetterGuess = Character.toLowerCase(wordle.charAt(0));
+                    char secondLetterGuess = Character.toLowerCase(wordle.charAt(1));
+                    char thirdLetterGuess = Character.toLowerCase(wordle.charAt(2));
+                    char fourthLetterGuess = Character.toLowerCase(wordle.charAt(3));
+                    char fifthLetterGuess = Character.toLowerCase(wordle.charAt(4));
+
+                    //ANSWER CHARACTERS
+                    char firstLetterAnswer = answer.charAt(0);
+                    char secondLetterAnswer = answer.charAt(1);
+                    char thirdLetterAnswer = answer.charAt(2);
+                    char fourthLetterAnswer = answer.charAt(3);
+                    char fifthLetterAnswer = answer.charAt(4);
+
+                    if (firstLetterGuess == firstLetterAnswer) {
+                        System.out.println("GREEN!");
+                    } else if (answer.indexOf(firstLetterGuess) >= 0) {
+                        System.out.println("YELLOW!");
+                    } else {
+                        System.out.println("GRAY...");
+                    }
+
+                    if (secondLetterGuess == secondLetterAnswer) {
+                        System.out.println("GREEN!");
+                    } else if ((answer.indexOf(secondLetterGuess) >= 0)) {
+                        System.out.println("YELLOW!");
+                    } else {
+                        System.out.println("GRAY...");
+                    }
+
+                    if (thirdLetterGuess == thirdLetterAnswer) {
+                        System.out.println("GREEN!");
+                    } else if ((answer.indexOf(thirdLetterGuess) >= 0)) {
+                        System.out.println("YELLOW!");
+                    } else {
+                        System.out.println("GRAY...");
+                    }
+
+                    if (fourthLetterGuess == fourthLetterAnswer) {
+                        System.out.println("GREEN!");
+                    } else if ((answer.indexOf(fourthLetterGuess) >= 0)) {
+                        System.out.println("YELLOW!");
+                    } else {
+                        System.out.println("GRAY...");
+                    }
+
+                    if (fifthLetterGuess == fifthLetterAnswer) {
+                        System.out.println("GREEN!");
+                    } else if ((answer.indexOf(fifthLetterGuess) >= 0)) {
+                        System.out.println("YELLOW!");
+                    } else {
+                        System.out.println("GRAY...");
+                    }
+
+                    if (firstLetterGuess == firstLetterAnswer && secondLetterGuess == secondLetterAnswer && thirdLetterGuess == thirdLetterAnswer && fourthLetterGuess == fourthLetterAnswer && fifthLetterGuess == fifthLetterAnswer) {
+                        System.out.println("Congratulations!");
+                        break;
+                    }
+                }else{
+                    System.out.println("You have to type a five letter word with NO repeating letters!");
+                    i--;
+                }
+            }else{
+                System.out.println("You have to type a five letter word!");
+                i--;
+            }
         }
     }
 
+    boolean UniqueCharacters(String str)
+    {
+        for (int i = 0; i < str.length(); i++)
+            for (int j = i + 1; j < str.length(); j++)
+                if (str.charAt(i) == str.charAt(j)) {
+                    return false;
+                }
+        return true;
+    }
 }
