@@ -8,8 +8,6 @@ import java.net.URL;
 
 public class Main {
 
-    Locale locale = new Locale("en_US");
-
     public static void main(String[] agrs) throws IOException {
 
         Locale.setDefault(Locale.US);
@@ -27,7 +25,7 @@ public class Main {
             do {
                 URL url = new URL("https://random-word-api.herokuapp.com/word?length=5&lang=en");
                 Scanner sc = new Scanner(url.openStream());
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
 
                 while (sc.hasNext()) {
                     sb.append(sc.next());
@@ -114,45 +112,15 @@ public class Main {
                     char fourthLetterAnswer = answer.charAt(3);
                     char fifthLetterAnswer = answer.charAt(4);
 
-                    if (firstLetterGuess == firstLetterAnswer) {
-                        System.out.println("GREEN!");
-                    } else if (answer.indexOf(firstLetterGuess) >= 0) {
-                        System.out.println("YELLOW!");
-                    } else {
-                        System.out.println("GRAY...");
-                    }
+                    checkLetters(firstLetterGuess, firstLetterAnswer, answer);
 
-                    if (secondLetterGuess == secondLetterAnswer) {
-                        System.out.println("GREEN!");
-                    } else if ((answer.indexOf(secondLetterGuess) >= 0)) {
-                        System.out.println("YELLOW!");
-                    } else {
-                        System.out.println("GRAY...");
-                    }
+                    checkLetters(secondLetterGuess, secondLetterAnswer, answer);
 
-                    if (thirdLetterGuess == thirdLetterAnswer) {
-                        System.out.println("GREEN!");
-                    } else if ((answer.indexOf(thirdLetterGuess) >= 0)) {
-                        System.out.println("YELLOW!");
-                    } else {
-                        System.out.println("GRAY...");
-                    }
+                    checkLetters(thirdLetterGuess, thirdLetterAnswer, answer);
 
-                    if (fourthLetterGuess == fourthLetterAnswer) {
-                        System.out.println("GREEN!");
-                    } else if ((answer.indexOf(fourthLetterGuess) >= 0)) {
-                        System.out.println("YELLOW!");
-                    } else {
-                        System.out.println("GRAY...");
-                    }
+                    checkLetters(fourthLetterGuess, fourthLetterAnswer, answer);
 
-                    if (fifthLetterGuess == fifthLetterAnswer) {
-                        System.out.println("GREEN!");
-                    } else if ((answer.indexOf(fifthLetterGuess) >= 0)) {
-                        System.out.println("YELLOW!");
-                    } else {
-                        System.out.println("GRAY...");
-                    }
+                    checkLetters(fifthLetterGuess, fifthLetterAnswer, answer);
 
                     if (firstLetterGuess == firstLetterAnswer && secondLetterGuess == secondLetterAnswer && thirdLetterGuess == thirdLetterAnswer && fourthLetterGuess == fourthLetterAnswer && fifthLetterGuess == fifthLetterAnswer) {
                         System.out.println("Congratulations!");
@@ -166,6 +134,16 @@ public class Main {
                 System.out.println("You have to type a five letter word!");
                 i--;
             }
+        }
+    }
+
+    public static void checkLetters(char LetterGuess, char LetterAnswer, String answer){
+        if (LetterGuess == LetterAnswer) {
+            System.out.println("GREEN!");
+        } else if (answer.indexOf(LetterGuess) >= 0) {
+            System.out.println("YELLOW!");
+        } else {
+            System.out.println("GRAY...");
         }
     }
 
